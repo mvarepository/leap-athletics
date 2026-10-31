@@ -58,6 +58,23 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
 [aria-label="Fewer"]:hover,[aria-label="More"]:hover{background:var(--color-accent-200)!important}
 @media (max-width:1060px){[data-navlinks]{display:none!important}[data-navmenu]{display:block!important}[data-navbar]{gap:10px!important}}
 @media (max-width:520px){[data-navcta]{display:none!important}[data-wordmark]{height:20px!important}}
+@media (max-width:700px){
+  .hero-ctas{flex-direction:column!important;align-items:stretch!important;width:100%;max-width:340px}
+  .hero-ctas>button{width:100%!important}
+  .hero-read{position:relative!important;right:auto!important;top:auto!important;align-items:center!important;text-align:center!important;margin-top:var(--space-2)}
+  .hero-read>div{font-size:56px!important}
+  .sticky-bar{padding:6px 6px 6px 18px!important;gap:var(--space-2)!important}
+  .sticky-bar>span{white-space:normal!important;font-size:14px!important;line-height:1.2!important}
+  .sticky-bar>button{padding:0 16px!important;white-space:nowrap!important}
+  .meet-stick{grid-template-columns:minmax(0,1fr)!important;height:auto!important;min-height:calc(100vh - 56px);align-content:center;gap:var(--space-4)!important;padding-top:var(--space-6);padding-bottom:var(--space-6)}
+  .meet-parts{grid-template-columns:minmax(0,1fr)!important;gap:var(--space-2)!important}
+  .test-sec{height:auto!important;min-height:0!important;display:flex;flex-direction:column;padding-bottom:0}
+  .test-shade{display:none!important}
+  .test-copy{order:-1;position:relative!important;top:auto!important;padding-top:var(--space-8)}
+  .test-copy h2{max-width:none!important;font-size:clamp(30px, 8.5vw, 40px)!important}
+  .test-photo{position:relative!important;top:auto!important;bottom:auto!important;right:auto!important;max-width:none!important;width:66%!important;margin:var(--space-4) 0 0 auto}
+  .test-tower{left:0!important;width:30%!important}
+}
 </style>
 </helmet>
 
@@ -119,7 +136,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
       <span class="tag" style="background:var(--btn-bg);color:var(--btn-fg);display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:6px 14px"><span style="width:8px;height:8px;border-radius:50%;background:var(--color-accent-2-300)"></span>The Leap Wall · Coming late 2026</span>
       <h1 style="font-size:clamp(52px, 9vw, 120px);line-height:0.98;letter-spacing:-0.025em;margin:0;text-wrap:balance;color:var(--color-accent-900)">Measure every <em style="color:var(--color-accent-2-800)">leap.</em></h1>
       <p style="font-size:clamp(17px, 2vw, 21px);max-width:560px;margin:0;color:var(--color-text);text-wrap:pretty">Vertical jump testing for GAA clubs, schools, and anyone with a wall to hang it on — at a price that makes sense.</p>
-      <div style="display:flex;gap:var(--space-3);align-items:center;margin-top:var(--space-2)">
+      <div class="hero-ctas" style="display:flex;gap:var(--space-3);align-items:center;margin-top:var(--space-2)">
         <button class="btn btn-primary" onClick="{{ goWaitlist }}" style="background:var(--btn-bg);color:var(--btn-fg);border-radius:999px;height:48px;padding:0 28px;font-family:var(--font-ui);font-size:17px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap" style-hover="background:var(--btn-hover)">Join the waitlist</button>
         <button class="btn btn-ghost" onClick="{{ watchJump }}" style="color:var(--color-accent-700);border-radius:999px;height:48px;padding:0 24px;font-family:var(--font-ui);font-size:17px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;border:1px solid currentColor;background:transparent;transition:background 200ms ease, color 200ms ease, border-color 200ms ease" style-hover="background:var(--color-accent-700);border-color:var(--color-accent-700);color:#fff">Watch a jump ↗</button>
       </div>
@@ -132,7 +149,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
     </div>
     <div style="max-width:1200px;margin:0 auto;position:relative;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center">
       <div data-keep="" style="display:contents">{{ heroTower }}</div>
-      <div style="position:absolute;right:var(--space-4);top:var(--space-6);display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1);text-align:right">
+      <div class="hero-read" style="position:absolute;right:var(--space-4);top:var(--space-6);display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1);text-align:right">
         <span style="font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-2-800);font-weight:600">Jump height</span>
         <div ref="{{ readRef }}" style="font-family:var(--font-heading);font-weight:600;font-size:clamp(56px, 8vw, 104px);line-height:1;color:var(--color-accent-900);font-variant-numeric:tabular-nums"><span>0</span></div>
         <span style="font-size:15px;color:var(--color-text)">centimetres</span>
@@ -185,12 +202,12 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
   </section>
 
   <section data-grow-track="" data-screen-label="Meet the Leap" style="height:320vh;position:relative;background:var(--color-accent-200)">
-    <div style="position:sticky;top:56px;height:calc(100vh - 56px);max-width:1200px;margin:0 auto;padding:0 var(--space-4);display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));align-items:center;gap:var(--space-6);overflow:hidden;box-sizing:border-box">
+    <div class="meet-stick" style="position:sticky;top:56px;height:calc(100vh - 56px);max-width:1200px;margin:0 auto;padding:0 var(--space-4);display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));align-items:center;gap:var(--space-6);overflow:hidden;box-sizing:border-box">
       <div ref="{{ growBoxRef }}" style="height:min(620px, 70vh);display:flex;align-items:center;justify-content:center">{{ growTower }}</div>
       <div style="display:flex;flex-direction:column;gap:var(--space-3)">
         <span style="font-size:14px;color:var(--color-accent-700)">02 · Meet the Leap Wall</span>
         <h2 style="font-size:clamp(32px, min(5vw, 8vh), 60px);margin:0;letter-spacing:-0.02em">Four parts. One number.</h2>
-        <ol style="list-style:none;margin:var(--space-1) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:var(--space-3) var(--space-4)">
+        <ol class="meet-parts" style="list-style:none;margin:var(--space-1) 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:var(--space-3) var(--space-4)">
           <sc-for list="{{ parts }}" as="pt" hint-placeholder-count="4">
             <li data-part="" style="display:grid;grid-template-columns:40px minmax(0,1fr);gap:var(--space-2);opacity:0.2">
               <span style="font-family:var(--font-heading);font-weight:600;font-size:18px;color:var(--color-accent-700)">{{ pt.n }}</span>
@@ -227,11 +244,11 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
     </div>
   </section>
 
-  <section data-keep="" data-screen-label="The test" style="position:relative;height:min(92vh, 900px);min-height:520px;overflow:hidden;background:var(--color-accent-900)">
-    <div style="position:absolute;top:0;bottom:0;right:0;aspect-ratio:476/644;max-width:62%"><img src="uploads/pasted-1791442849980-0.png" alt="Player leaping for a high catch" style="width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block"></img></div>
-    <div style="position:absolute;top:28%;bottom:0;left:2%;width:min(34%, 420px);pointer-events:none;display:flex;align-items:center">{{ photoTower }}</div>
-    <div style="position:absolute;inset:0 0 auto 0;height:45%;background:linear-gradient(to bottom, color-mix(in srgb, var(--color-neutral-900) 55%, transparent), transparent);pointer-events:none"></div>
-    <div data-reveal="" style="position:absolute;top:var(--space-8);left:clamp(16px, 3vw, 40px);right:0;box-sizing:border-box;pointer-events:none;display:flex;flex-direction:column;gap:var(--space-2)">
+  <section data-keep="" data-screen-label="The test" class="test-sec" style="position:relative;height:min(92vh, 900px);min-height:520px;overflow:hidden;background:var(--color-accent-900)">
+    <div class="test-photo" style="position:absolute;top:0;bottom:0;right:0;aspect-ratio:476/644;max-width:62%"><img src="uploads/pasted-1791442849980-0.png" alt="Player leaping for a high catch" style="width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block"></img></div>
+    <div class="test-tower" style="position:absolute;top:28%;bottom:0;left:2%;width:min(34%, 420px);pointer-events:none;display:flex;align-items:center">{{ photoTower }}</div>
+    <div class="test-shade" style="position:absolute;inset:0 0 auto 0;height:45%;background:linear-gradient(to bottom, color-mix(in srgb, var(--color-neutral-900) 55%, transparent), transparent);pointer-events:none"></div>
+    <div class="test-copy" data-reveal="" style="position:absolute;top:var(--space-8);left:clamp(16px, 3vw, 40px);right:0;box-sizing:border-box;pointer-events:none;display:flex;flex-direction:column;gap:var(--space-2)">
       <span style="font-size:14px;color:#fff">The test</span>
       <h2 style="font-size:clamp(32px, 4.6vw, 84px);margin:0;letter-spacing:-0.025em;line-height:1;color:#fff;max-width:min(560px, 32vw)">One jump. <em>The truth.</em></h2>
     </div>
@@ -420,7 +437,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
     </div>
   </section>
 
-  <div ref="{{ barRef }}" style="position:fixed;left:50%;bottom:var(--space-4);z-index:30;transform:translate(-50%, 160%);width:min(440px, calc(100% - 32px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:8px 8px 8px 24px;background:var(--color-bg);border-radius:999px;box-shadow:var(--shadow-lg)">
+  <div ref="{{ barRef }}" class="sticky-bar" style="position:fixed;left:50%;bottom:var(--space-4);z-index:30;transform:translate(-50%, 160%);transition:transform 400ms cubic-bezier(.2,.8,.2,1);will-change:transform;width:min(440px, calc(100% - 32px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:8px 8px 8px 24px;background:var(--color-bg);border-radius:999px;box-shadow:var(--shadow-lg)">
     <span style="font-family:var(--font-ui);font-size:15px;font-weight:500;line-height:1.1;white-space:nowrap"><strong>Leap Wall</strong> · Coming late 2026</span>
     <button class="btn btn-primary" data-addbag="" onClick="{{ goWaitlist }}" style="border-radius:999px;height:40px;padding:0 20px;font-family:var(--font-ui);font-size:15px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;transition:background 200ms ease, transform 200ms ease" style-hover="background:var(--btn-hover);transform:scale(1.04)" style-active="transform:scale(0.97)">Join the waitlist</button>
   </div>
@@ -429,7 +446,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
 
 <sc-if value="{{ isShop }}" hint-placeholder-val="{{ false }}">
 <main data-screen-label="Shop" style="max-width:1200px;margin:0 auto;padding:calc(76px + var(--space-8)) var(--space-4) 120px;display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:clamp(32px, 6vw, 96px);align-items:start">
-  <div style="display:flex;flex-direction:column;gap:var(--space-3);position:sticky;top:96px">
+  <div style="display:flex;flex-direction:column;gap:var(--space-3)">
     <div style="aspect-ratio:4/5;border-radius:var(--radius-lg);background:#2d2b2b;overflow:hidden"><img src="{{ shopSrc }}" alt="Leap Wall" style="width:100%;height:100%;object-fit:cover;display:block"></img></div>
     <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:var(--space-2)">
       <sc-for list="{{ shopThumbs }}" as="th" hint-placeholder-count="4">
@@ -685,8 +702,8 @@ class Component extends DCLogic {
     const tick = (t) => {
       const vh = innerHeight;
       if (this.marqueeEl) this.marqueeEl.style.transform = `translateX(${-((t * 0.04 + scrollY * 0.3) % (this.marqueeEl.scrollWidth / 2))}px)`;
-      if (this.barEl) this.barEl.style.transform = `translate(-50%, ${scrollY > vh * 0.9 ? 0 : 160}%)`;
-      if (this.barEl) this.barEl.style.transition = 'transform 400ms cubic-bezier(.2,.8,.2,1)';
+      const barOn = scrollY > vh * 0.9;
+      if (this.barEl && barOn !== this.barOn) { this.barOn = barOn; this.barEl.style.transform = `translate(-50%, ${barOn ? 0 : 160}%)`; }
       const narrow = innerWidth < 700;
       if (this.growBoxEl) this.growBoxEl.style.height = narrow ? '32vh' : 'min(620px, 70vh)';
       document.querySelectorAll('[data-part-d]').forEach(d => d.style.display = (narrow && vh < 900) || vh < 720 ? 'none' : '');
