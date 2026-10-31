@@ -61,19 +61,22 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
 @media (max-width:700px){
   .hero-ctas{flex-direction:column!important;align-items:stretch!important;width:100%;max-width:340px}
   .hero-ctas>button{width:100%!important}
-  .hero-read{position:relative!important;right:auto!important;top:auto!important;align-items:center!important;text-align:center!important;margin-top:var(--space-2)}
+  .hero-read{position:relative!important;right:auto!important;top:auto!important;align-items:center!important;text-align:center!important;margin-top:calc(var(--space-2) - 90px)!important}
   .hero-read>div{font-size:56px!important}
   .sticky-bar{padding:6px 6px 6px 18px!important;gap:var(--space-2)!important}
   .sticky-bar>span{white-space:normal!important;font-size:14px!important;line-height:1.2!important}
   .sticky-bar>button{padding:0 16px!important;white-space:nowrap!important}
-  .meet-stick{grid-template-columns:minmax(0,1fr)!important;height:auto!important;min-height:calc(100vh - 56px);align-content:center;gap:var(--space-4)!important;padding-top:var(--space-6);padding-bottom:var(--space-6)}
-  .meet-parts{grid-template-columns:minmax(0,1fr)!important;gap:var(--space-2)!important}
+  [data-grow-track]{height:200vh!important}
+  .meet-stick{grid-template-columns:minmax(0,1fr)!important;height:auto!important;align-content:start;gap:var(--space-3)!important;padding-top:var(--space-4)!important;padding-bottom:var(--space-4)!important}
+  .meet-parts{grid-template-columns:repeat(2, minmax(0,1fr))!important;gap:var(--space-3) var(--space-2)!important}
+  .meet-parts li{grid-template-columns:28px minmax(0,1fr)!important;gap:var(--space-1)!important}
+  .meet-parts strong{font-size:17px!important}
   .test-sec{height:auto!important;min-height:0!important;display:flex;flex-direction:column;padding-bottom:0}
   .test-shade{display:none!important}
   .test-copy{order:-1;position:relative!important;top:auto!important;padding-top:var(--space-8)}
   .test-copy h2{max-width:none!important;font-size:clamp(30px, 8.5vw, 40px)!important}
-  .test-photo{position:relative!important;top:auto!important;bottom:auto!important;right:auto!important;max-width:none!important;width:66%!important;margin:var(--space-4) 0 0 auto}
-  .test-tower{left:0!important;width:30%!important}
+  .test-photo{position:relative!important;top:auto!important;bottom:auto!important;right:auto!important;max-width:none!important;width:54%!important;margin:var(--space-4) 0 0 auto}
+  .test-tower{left:0!important;width:40%!important}
 }
 </style>
 </helmet>
@@ -580,6 +583,22 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
           </sc-for>
         </div>
       </div>
+      <sc-if value="{{ isClub }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:var(--space-3)">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Club name<input class="input" required="" placeholder="e.g. St. Finbarr’s GAA" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">County<input class="input" required="" placeholder="e.g. Cork" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Squad size<input class="input" type="number" min="1" placeholder="e.g. 30" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Leap Walls needed<input class="input" type="number" min="1" placeholder="e.g. 2" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+        </div>
+      </sc-if>
+      <sc-if value="{{ isSchool }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:var(--space-3)">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">School name<input class="input" required="" placeholder="e.g. Scoil Mhuire" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">County<input class="input" required="" placeholder="e.g. Cork" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Students tested<input class="input" type="number" min="1" placeholder="e.g. 120" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Leap Walls needed<input class="input" type="number" min="1" placeholder="e.g. 2" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
+        </div>
+      </sc-if>
       <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:var(--space-3)">
         <label for="c-name" style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Name<input id="c-name" class="input" required="" placeholder="Your name" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
         <label for="c-email" style="display:flex;flex-direction:column;gap:8px;font-size:14px;font-weight:500;color:var(--color-text)">Email<input id="c-email" class="input" type="email" required="" placeholder="you@example.com" style="min-height:52px;padding:0 16px;border-radius:14px;border:1px solid transparent;background:var(--track);font-family:var(--font-ui);font-size:17px" style-focus="background:var(--card);border-color:var(--color-accent);outline:none"></input></label>
@@ -701,11 +720,11 @@ class Component extends DCLogic {
     const clamp = v => Math.max(0, Math.min(1, v));
     const tick = (t) => {
       const vh = innerHeight;
-      if (this.marqueeEl) this.marqueeEl.style.transform = `translateX(${-((t * 0.04 + scrollY * 0.3) % (this.marqueeEl.scrollWidth / 2))}px)`;
+      if (this.marqueeEl) this.marqueeEl.style.transform = `translateX(${-((t * 0.04) % (this.marqueeEl.scrollWidth / 2))}px)`;
       const barOn = scrollY > vh * 0.9;
       if (this.barEl && barOn !== this.barOn) { this.barOn = barOn; this.barEl.style.transform = `translate(-50%, ${barOn ? 0 : 160}%)`; }
       const narrow = innerWidth < 700;
-      if (this.growBoxEl) this.growBoxEl.style.height = narrow ? '32vh' : 'min(620px, 70vh)';
+      if (this.growBoxEl) this.growBoxEl.style.height = narrow ? '50vh' : 'min(620px, 70vh)';
       document.querySelectorAll('[data-part-d]').forEach(d => d.style.display = (narrow && vh < 900) || vh < 720 ? 'none' : '');
       document.querySelectorAll('[data-grow-track]').forEach(tr => {
         const r = tr.getBoundingClientRect();
@@ -860,6 +879,7 @@ class Component extends DCLogic {
       bg: org === label ? 'var(--card)' : 'transparent', fg: 'var(--color-text)', sh: org === label ? '0 1px 2px rgba(0,0,0,0.08), 0 3px 10px rgba(0,0,0,0.08)' : 'none',
       pick: () => this.setState({ org: label }) }));
     return {
+      isClub: this.state.org === 'Club', isSchool: this.state.org === 'School',
       isHome: page === 'home', isShop: page === 'shop', isAbout: page === 'about', isContact: page === 'contact', isPricing: page === 'pricing', showProof: this.props.showProof ?? true, isWaitlist: page === 'waitlist',
       goWaitlist: () => this.go('waitlist'), goWaitlistLink: this.link('waitlist'),
       wlSent: this.state.wlSent, wlNotSent: !this.state.wlSent, wlEmail: this.state.wlEmail || 'you',
@@ -880,7 +900,7 @@ class Component extends DCLogic {
       bagCount: bag,
       isDark: this.state.dark, isLight: !this.state.dark, themeLabel: this.state.dark ? 'Switch to light mode' : 'Switch to dark mode',
       toggleTheme: () => { const dark = !this.state.dark; this.setState({ dark }); localStorage.setItem('leap-theme', dark ? 'dark' : 'light'); document.documentElement.dataset.theme = dark ? 'dark' : 'light'; },
-      heroTower: this.tower('hero', { n: 45, sp: 9, l: 200, d: 30, base: 'disc' }),
+      heroTower: this.tower('hero', { n: 45, sp: 8.55, l: 190, d: 28.5, base: 'disc' }),
       growTower: this.tower('grow', { n: 45, sp: 10, l: 230, d: 34, base: 'wall', fit: true }),
       growBoxRef: el => this.growBoxEl = el,
       photoTower: this.tower('photo', { n: 45, sp: 9, l: 180, d: 28, base: 'none', fit: true, ry: -30, ph: 0.7, fan: swatted(30) }),
