@@ -85,7 +85,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
 </style>
 </helmet>
 
-<header data-keep="" style="position:fixed;top:12px;left:0;right:0;z-index:50;height:64px;padding:0 var(--space-4);display:flex;justify-content:center;pointer-events:none">
+<header data-keep="" style="position:fixed;top:12px;left:0;right:0;z-index:50;height:64px;padding:0 var(--space-4);display:flex;justify-content:center;pointer-events:none"><sc-if value="{{ liNote }}" hint-placeholder-val="{{ false }}"><div role="status" style="position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);pointer-events:auto;display:flex;align-items:center;gap:12px;padding:10px 10px 10px 20px;background:var(--card);color:var(--color-text);border-radius:999px;box-shadow:var(--shadow-lg);font-family:var(--font-ui);font-size:15px;white-space:nowrap"><span><strong>LinkedIn</strong> is coming soon</span><button type="button" aria-label="Close" onClick="{{ closeLi }}" style="width:32px;height:32px;border:0;border-radius:999px;background:var(--color-accent-100);color:var(--color-text);font-size:18px;line-height:1;cursor:pointer">×</button></div></sc-if>
   <nav style="pointer-events:auto;width:100%;max-width:1040px;height:64px;box-sizing:border-box;display:flex;align-items:center;gap:var(--space-4);padding:0 10px 0 22px;border-radius:999px;background:color-mix(in srgb, #fff 86%, transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);box-shadow:var(--shadow-md)">
     <button onClick="{{ goHome }}" aria-label="Leap Athletics home" style="display:flex;align-items:center;gap:var(--space-2);margin-right:auto;background:none;border:0;padding:0;cursor:pointer;transition:transform 200ms ease" style-hover="transform:scale(1.03)">
       <img src="assets/logo-mark-hd.png" alt="" style="height:30px"></img>
@@ -714,7 +714,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;autoJump&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;towerSpin&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showProof&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;label&quot;:&quot;Show proof banner (placeholder numbers)&quot;}}">
 class Component extends DCLogic {
-  state = { wlSent: false, wlEmail: '', navOpen: false, socialOpen: false, units: 10, qOrg: 'Club', qSent: false, page: 'home', bag: 0, qty: 1, org: 'Club', sent: false, faq: 0, shopImg: 0, dark: localStorage.getItem('leap-theme') === 'dark' || /Dark/.test(decodeURIComponent(location.pathname)) };
+  state = { wlSent: false, wlEmail: '', navOpen: false, socialOpen: false, units: 10, qOrg: 'Club', qSent: false, page: 'home', bag: 0, qty: 1, org: 'Club', sent: false, liNote: false, faq: 0, shopImg: 0, dark: localStorage.getItem('leap-theme') === 'dark' || /Dark/.test(decodeURIComponent(location.pathname)) };
   tw = {};
 
   componentDidMount() {
@@ -894,7 +894,8 @@ class Component extends DCLogic {
       navItems: [['Home', 'home'], ['Shop', 'shop'], ['Join the waitlist', 'waitlist'], ['About', 'about'], ['Club pricing', 'pricing'], ['Contact', 'contact']].map(([label, p]) => ({ label, go: () => { this.setState({ navOpen: false }); this.go(p); } })),
       socialRef: el => this.socialEl = el, socialOpen: this.state.socialOpen, socialExp: String(this.state.socialOpen), socialRot: this.state.socialOpen ? 180 : 0,
       toggleSocial: () => this.setState(s => ({ socialOpen: !s.socialOpen })),
-      socialClick: e => { if ((e.currentTarget.getAttribute('href') || '').startsWith('#')) e.preventDefault(); this.setState({ socialOpen: false }); },
+      socialClick: e => { const h = e.currentTarget.getAttribute('href') || ''; if (h.startsWith('#')) e.preventDefault(); if (h === '#linkedin') { this.setState({ socialOpen: false, liNote: true }); return; } this.setState({ socialOpen: false }); },
+      liNote: this.state.liNote, closeLi: () => this.setState({ liNote: false }),
       units: this.state.units, uDec: () => this.setState(s => ({ units: Math.max(2, s.units - 1) })), uInc: () => this.setState(s => ({ units: s.units + 1 })),
       qOrgs: ['Club', 'School'].map(label => { const on = this.state.qOrg === label; return { label, on: String(on), bg: on ? 'var(--card)' : 'transparent', sh: on ? '0 1px 2px rgba(0,0,0,0.08), 0 3px 10px rgba(0,0,0,0.08)' : 'none', pick: () => this.setState({ qOrg: label }) }; }),
       qSent: this.state.qSent, qNotSent: !this.state.qSent,
