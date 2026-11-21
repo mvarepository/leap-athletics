@@ -443,7 +443,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
     </div>
   </section>
 
-  <div ref="{{ barRef }}" class="sticky-bar" style="position:fixed;left:50%;bottom:var(--space-4);z-index:30;transform:translate(-50%, 160%);transition:transform 400ms cubic-bezier(.2,.8,.2,1);will-change:transform;width:min(440px, calc(100% - 32px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:8px 8px 8px 24px;background:var(--color-bg);border-radius:999px;box-shadow:var(--shadow-lg)">
+  <div ref="{{ barRef }}" class="sticky-bar" style="position:fixed;left:50%;bottom:var(--space-4);z-index:30;transform:translate(-50%, 160%);transition:transform 400ms cubic-bezier(.2,.8,.2,1);width:min(440px, calc(100% - 32px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:var(--space-3);padding:8px 8px 8px 24px;background:var(--color-bg);border-radius:999px;box-shadow:var(--shadow-lg)">
     <span style="font-family:var(--font-ui);font-size:15px;font-weight:500;line-height:1.1;white-space:nowrap"><strong>Leap Wall</strong> · Coming late 2026</span>
     <button class="btn btn-primary" data-addbag="" onClick="{{ goWaitlist }}" style="border-radius:999px;height:40px;padding:0 20px;font-family:var(--font-ui);font-size:15px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;transition:background 200ms ease, transform 200ms ease" style-hover="background:var(--btn-hover);transform:scale(1.04)" style-active="transform:scale(0.97)">Join the waitlist</button>
   </div>
