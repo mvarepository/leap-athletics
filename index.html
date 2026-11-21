@@ -164,7 +164,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
   </section>
 
   <div data-keep="" data-marquee="" aria-hidden="true" style="overflow:hidden;padding:var(--space-2) 0;background:var(--color-accent-900)">
-    <div ref="{{ marqueeRef }}" style="display:flex;gap:var(--space-4);width:max-content;font-family:var(--font-heading);font-size:clamp(18px, 2.2vw, 26px);font-weight:600;white-space:nowrap;will-change:transform">
+    <div ref="{{ marqueeRef }}" style="display:flex;gap:var(--space-4);width:max-content;font-family:var(--font-heading);font-size:clamp(18px, 2.2vw, 26px);font-weight:600;white-space:nowrap">
       <sc-for list="{{ marquee }}" as="m" hint-placeholder-count="16">
         <span style="display:flex;gap:var(--space-4);color:{{ m.c }}">{{ m.w }}<span style="color:var(--color-accent-2-300)">·</span></span>
       </sc-for>
@@ -396,7 +396,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
         <span style="display:block;font-size:15px;font-weight:500;letter-spacing:0.02em;color:var(--color-accent-700);margin-bottom:var(--space-4)">09 · Who it’s for</span>
         <h2 style="font-size:clamp(36px, 5vw, 60px);margin:0;letter-spacing:-0.02em">Built for every sport <em style="color:var(--color-accent-700)">that leaves the ground.</em></h2>
       </div>
-      <div data-htrack="" style="display:flex;gap:var(--space-4);padding:0 max(var(--space-4), calc((100vw - 1200px) / 2 + var(--space-4)));width:max-content;will-change:transform">
+      <div data-htrack="" style="display:flex;gap:var(--space-4);padding:0 max(var(--space-4), calc((100vw - 1200px) / 2 + var(--space-4)));width:max-content">
         <sc-for list="{{ sports }}" as="sp" hint-placeholder-count="5">
           <article data-keep="" style="width:min(72vw, 340px);height:min(44vh, 320px);border-radius:var(--radius-lg);background:{{ sp.bg }};color:{{ sp.fg }};padding:clamp(28px, 3vw, 40px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
             <span style="font-family:var(--font-heading);font-weight:600;font-size:clamp(56px, 7vw, 84px);line-height:0.9">{{ sp.n }}</span>
