@@ -62,7 +62,8 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
   .hero-ctas{flex-direction:column!important;align-items:center!important;width:auto!important;max-width:none!important}
   .hero-ctas>button{width:220px!important;height:44px!important;font-size:16px!important}
   .hero-tower>div{transform:scale(0.85);transform-origin:50% 0;margin-bottom:-88px}
-  .hero-read{position:relative!important;right:auto!important;top:auto!important;align-items:center!important;text-align:center!important;margin-top:calc(var(--space-2) - 90px)!important}
+  .hero-stage{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)!important;align-items:end}
+  .hero-read{position:relative!important;right:auto!important;top:auto!important;align-items:center!important;text-align:center!important;margin:0!important;justify-self:center}
   .hero-read>div{font-size:56px!important}
   .sticky-bar{padding:6px 6px 6px 18px!important;gap:var(--space-2)!important}
   .sticky-bar>span{white-space:normal!important;font-size:14px!important;line-height:1.2!important}
@@ -151,7 +152,7 @@ header a:hover,a[role=menuitem]:hover,a[aria-label]:hover,a[style*="border-radiu
         <span><strong style="color:var(--color-accent-2-800)">No batteries</strong> · no app</span>
       </div>
     </div>
-    <div style="max-width:1200px;margin:0 auto;position:relative;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center">
+    <div class="hero-stage" style="max-width:1200px;margin:0 auto;position:relative;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center">
       <div class="hero-tower" data-keep="" style="display:contents">{{ heroTower }}</div>
       <div class="hero-read" style="position:absolute;right:var(--space-4);top:var(--space-6);display:flex;flex-direction:column;align-items:flex-end;gap:var(--space-1);text-align:right">
         <span style="font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-2-800);font-weight:600">Jump height</span>
