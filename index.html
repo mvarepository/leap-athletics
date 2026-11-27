@@ -723,9 +723,9 @@ class Component extends DCLogic {
   emailjsKey = 'xHhGSHwY1krrMOBVj';
   emailjsTo = 'Jcb.Vickers@gmail.com';
   readFields = (form) => Array.from(form.querySelectorAll('label')).map(l => { const f = l.querySelector('input,textarea'); return f && f.value ? l.textContent.trim() + ': ' + f.value : null; }).filter(Boolean).join('\n');
-  sendToTeam = async (subject, body, replyTo) => {
+  sendToTeam = async (subject, body, replyTo, name) => {
     if (!window.emailjs) throw new Error('EmailJS not loaded');
-    await window.emailjs.send(this.emailjsService, this.emailjsTemplate, { to_email: this.emailjsTo, subject: subject, message: body, from_email: replyTo || '', from_name: 'Leap Athletics website' }, { publicKey: this.emailjsKey });
+    await window.emailjs.send(this.emailjsService, this.emailjsTemplate, { to_email: this.emailjsTo, subject: subject, message: body, from_email: replyTo || '', from_name: 'Leap Athletics website', name: name || '', title: name || '', email: replyTo || '' }, { publicKey: this.emailjsKey });
   };
 
   componentDidMount() {
@@ -898,7 +898,7 @@ class Component extends DCLogic {
       isHome: page === 'home', isShop: page === 'shop', isAbout: page === 'about', isContact: page === 'contact', isPricing: page === 'pricing', showProof: this.props.showProof ?? true, isWaitlist: page === 'waitlist',
       goWaitlist: () => this.go('waitlist'), goWaitlistLink: this.link('waitlist'),
       wlSent: this.state.wlSent, wlNotSent: !this.state.wlSent, wlEmail: this.state.wlEmail || 'you',
-      joinWaitlist: async (e) => { e.preventDefault(); const f = e.currentTarget; const i = f.querySelector('input[type=email]'); const email = i ? i.value.trim() : ''; try { await this.sendToTeam('Leap Athletics: new waitlist sign-up', email + ' has joined the waitlist for Leap Athletics.', email); this.setState({ wlSent: true, wlEmail: email }); } catch (err) { alert('Sorry, that didn’t go through. ' + (err && (err.text || err.message) ? (err.text || err.message) : String(err))); } },
+      joinWaitlist: async (e) => { e.preventDefault(); const f = e.currentTarget; const i = f.querySelector('input[type=email]'); const email = i ? i.value.trim() : ''; try { await this.sendToTeam('Leap Athletics: new waitlist sign-up', email + ' has joined the waitlist for Leap Athletics.', email, email); this.setState({ wlSent: true, wlEmail: email }); } catch (err) { alert('Sorry, that didn’t go through. ' + (err && (err.text || err.message) ? (err.text || err.message) : String(err))); } },
       goPricing: () => this.go('pricing'), goPricingLink: this.link('pricing'),
       navRef: el => this.navEl = el, navOpen: this.state.navOpen, navExp: String(this.state.navOpen),
       toggleNav: () => this.setState(s => ({ navOpen: !s.navOpen })),
@@ -910,7 +910,7 @@ class Component extends DCLogic {
       units: this.state.units, uDec: () => this.setState(s => ({ units: Math.max(2, s.units - 1) })), uInc: () => this.setState(s => ({ units: s.units + 1 })),
       qOrgs: ['Club', 'School'].map(label => { const on = this.state.qOrg === label; return { label, on: String(on), bg: on ? 'var(--card)' : 'transparent', sh: on ? '0 1px 2px rgba(0,0,0,0.08), 0 3px 10px rgba(0,0,0,0.08)' : 'none', pick: () => this.setState({ qOrg: label }) }; }),
       qSent: this.state.qSent, qNotSent: !this.state.qSent,
-      sendQuote: async (e) => { e.preventDefault(); const f = e.currentTarget; const em = f.querySelector('#q-email'); const body = 'Ordering for: ' + this.state.qOrg + '\nLeap Walls: ' + this.state.units + '\n' + this.readFields(f); try { const orgEl = f.querySelector('#q-org'); const orgName = orgEl ? orgEl.value.trim() : ''; await this.sendToTeam('Club pricing request: ' + this.state.qOrg + (orgName ? ' - ' + orgName : ''), body, em ? em.value : ''); this.setState({ qSent: true }); } catch (err) { alert('Sorry, that didn’t send. Please try again, or email us directly.'); } },
+      sendQuote: async (e) => { e.preventDefault(); const f = e.currentTarget; const em = f.querySelector('#q-email'); const body = 'Ordering for: ' + this.state.qOrg + '\nLeap Walls: ' + this.state.units + '\n' + this.readFields(f); try { const orgEl = f.querySelector('#q-org'); const orgName = orgEl ? orgEl.value.trim() : ''; await this.sendToTeam('Club pricing request: ' + this.state.qOrg + (orgName ? ' - ' + orgName : ''), body, em ? em.value : '', orgName || this.state.qOrg); this.setState({ qSent: true }); } catch (err) { alert('Sorry, that didn’t send. Please try again, or email us directly.'); } },
       goHome: () => this.go('home'), goShop: () => this.go('shop'), goAbout: () => this.go('about'), goContact: () => this.go('contact'),
       goShopLink: this.link('shop'), goAboutLink: this.link('about'), goContactLink: this.link('contact'),
       bagCount: bag,
@@ -970,7 +970,7 @@ class Component extends DCLogic {
       addQty: () => this.setState(s => ({ bag: s.bag + s.qty })),
       addLabel: bag ? `Add to bag · ${bag} in bag` : 'Add to bag',
       addWall: () => this.setState(s => ({ bag: s.bag + 1 })),
-      send: async (e) => { e.preventDefault(); const f = e.currentTarget; const em = f.querySelector('#c-email'); const body = 'Buying for: ' + this.state.org + '\n' + this.readFields(f); try { const named = Array.from(f.querySelectorAll('label')).find(l => /^(Club|School) name/.test(l.textContent.trim())); const orgName = named && named.querySelector('input') ? named.querySelector('input').value.trim() : ''; await this.sendToTeam('Website contact: ' + this.state.org + (orgName ? ' - ' + orgName : ''), body, em ? em.value : ''); this.setState({ sent: true }); } catch (err) { alert('Sorry, that didn’t send. Please try again, or email us directly.'); } }
+      send: async (e) => { e.preventDefault(); const f = e.currentTarget; const em = f.querySelector('#c-email'); const body = 'Buying for: ' + this.state.org + '\n' + this.readFields(f); try { const named = Array.from(f.querySelectorAll('label')).find(l => /^(Club|School) name/.test(l.textContent.trim())); const orgName = named && named.querySelector('input') ? named.querySelector('input').value.trim() : ''; await this.sendToTeam('Website contact: ' + this.state.org + (orgName ? ' - ' + orgName : ''), body, em ? em.value : '', orgName || this.state.org); this.setState({ sent: true }); } catch (err) { alert('Sorry, that didn’t send. Please try again, or email us directly.'); } }
     };
   }
 }
