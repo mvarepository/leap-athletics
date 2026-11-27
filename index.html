@@ -898,7 +898,7 @@ class Component extends DCLogic {
       isHome: page === 'home', isShop: page === 'shop', isAbout: page === 'about', isContact: page === 'contact', isPricing: page === 'pricing', showProof: this.props.showProof ?? true, isWaitlist: page === 'waitlist',
       goWaitlist: () => this.go('waitlist'), goWaitlistLink: this.link('waitlist'),
       wlSent: this.state.wlSent, wlNotSent: !this.state.wlSent, wlEmail: this.state.wlEmail || 'you',
-      joinWaitlist: async (e) => { e.preventDefault(); const f = e.currentTarget; const i = f.querySelector('input[type=email]'); const email = i ? i.value.trim() : ''; try { await this.sendToTeam('Leap Athletics: new waitlist sign-up', email + ' has joined the waitlist for Leap Athletics.', email); this.setState({ wlSent: true, wlEmail: email }); } catch (err) { alert('Sorry, that didn’t go through. Please try again in a moment.'); } },
+      joinWaitlist: async (e) => { e.preventDefault(); const f = e.currentTarget; const i = f.querySelector('input[type=email]'); const email = i ? i.value.trim() : ''; try { await this.sendToTeam('Leap Athletics: new waitlist sign-up', email + ' has joined the waitlist for Leap Athletics.', email); this.setState({ wlSent: true, wlEmail: email }); } catch (err) { alert('Sorry, that didn’t go through. ' + (err && (err.text || err.message) ? (err.text || err.message) : String(err))); } },
       goPricing: () => this.go('pricing'), goPricingLink: this.link('pricing'),
       navRef: el => this.navEl = el, navOpen: this.state.navOpen, navExp: String(this.state.navOpen),
       toggleNav: () => this.setState(s => ({ navOpen: !s.navOpen })),
