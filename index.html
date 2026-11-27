@@ -721,10 +721,11 @@ class Component extends DCLogic {
   emailjsService = 'service_20nqf0t';
   emailjsTemplate = 'template_o5w5ong';
   emailjsKey = 'xHhGSHwY1krrMOBVj';
+  emailjsTo = 'Jcb.Vickers@gmail.com';
   readFields = (form) => Array.from(form.querySelectorAll('label')).map(l => { const f = l.querySelector('input,textarea'); return f && f.value ? l.textContent.trim() + ': ' + f.value : null; }).filter(Boolean).join('\n');
   sendToTeam = async (subject, body, replyTo) => {
     if (!window.emailjs) throw new Error('EmailJS not loaded');
-    await window.emailjs.send(this.emailjsService, this.emailjsTemplate, { subject: subject, message: body, from_email: replyTo || '', from_name: 'Leap Athletics website' }, { publicKey: this.emailjsKey });
+    await window.emailjs.send(this.emailjsService, this.emailjsTemplate, { to_email: this.emailjsTo, subject: subject, message: body, from_email: replyTo || '', from_name: 'Leap Athletics website' }, { publicKey: this.emailjsKey });
   };
 
   componentDidMount() {
